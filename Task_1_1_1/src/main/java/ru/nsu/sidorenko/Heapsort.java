@@ -3,19 +3,7 @@ package ru.nsu.sidorenko;
 /**
  * Класс heapsort, внутри которого реализована пирамидальная сортировка.
  */
-public class Heapsort {
-    /**
-     * Меняет местами два элемента из массива arr, где эти элементы имеют индексы i и j.
-     *
-     * @param arr - массив, в котором будут поменяны местами два элемента
-     * @param i - индекс первого элемента
-     * @param j - индекс второго элемента
-     */
-    public static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
+public final class Heapsort {
 
     /**
      * Делает из массива двоичное дерево, в котором каждый родитель больше своих сыновей.
@@ -60,13 +48,22 @@ public class Heapsort {
         }
     }
 
+
     /**
-     * Метод для тестируемых массивов.
+     * Меняет местами два элемента из массива arr, где эти элементы имеют индексы i и j.
      *
-     * @param args - аргументы командной строки
+     * @param arr - массив, в котором будут поменяны местами два элемента
+     * @param i - индекс первого элемента
+     * @param j - индекс второго элемента
      */
 
-    public static void main(String[] args) {
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
 
+    private Heapsort() {
+        throw new UnsupportedOperationException("This class can not be instantiated");
     }
 }
