@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"ru.nsu.sidorenko","c":"Heapsort","l":"heapify(int[], int, int)","u":"heapify(int[],int,int)"},{"p":"ru.nsu.sidorenko","c":"Heapsort","l":"heapsort(int[])"}];updateSearchResults();
+memberSearchIndex = [{"p":"ru.nsu.sidorenko","c":"Heapsort","l":"heapsort(int[])"}];updateSearchResults();
