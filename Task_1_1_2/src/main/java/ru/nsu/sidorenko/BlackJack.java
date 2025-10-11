@@ -73,8 +73,7 @@ public class BlackJack {
             if (endGame(1)) {
                 game();
             }
-        }
-        else {
+        } else {
             winnerCheck();
         }
 
@@ -88,13 +87,11 @@ public class BlackJack {
             if (endGame(1)) {
                 game();
             }
-        }
-        else if (dealer.getScore() == player.getScore()) {
+        } else if (dealer.getScore() == player.getScore()) {
             if (endGame(1)) {
                 game();
             }
-        }
-        else if (dealer.getScore() > player.getScore()) {
+        } else if (dealer.getScore() > player.getScore()) {
             if (endGame(2)) {
                 game();
             }
@@ -112,11 +109,9 @@ public class BlackJack {
             player.addCard(card);
             System.out.println("Вы открыли карту " + card + "\n");
             showCards();
-        }
-        else if (choice == 0) {
+        } else if (choice == 0) {
             playerTurn = false;
-        }
-        else {
+        } else {
             System.out.println("Некорректный ввод. Введите 1 или 0.");
         }
     }
@@ -159,18 +154,15 @@ public class BlackJack {
             System.out.println("Вы выиграли раунд! Счет " + playerwins + ":" + dealerwins);
             if (playerwins > dealerwins) {
                 System.out.println(" В Вашу пользу\n");
-            }
-            else {
+            } else {
                 System.out.println(" В пользу Дилера\n");
             }
-        }
-        else if (winner == 2) {
+        } else if (winner == 2) {
             dealerwins++;
             System.out.println("Дилер выиграл раунд! Счет " + playerwins + ":" + dealerwins);
             if (playerwins > dealerwins) {
                 System.out.println("В Вашу пользу\n");
-            }
-            else {
+            } else {
                 System.out.println("В пользу Дилера\n");
             }
         }
@@ -184,8 +176,7 @@ public class BlackJack {
             dealer.clearHand();
             System.out.println("\n======================================\n");
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

@@ -1,10 +1,12 @@
 package ru.nsu.sidorenko;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BlackJackTest {
@@ -110,7 +112,7 @@ class BlackJackTest {
     }
 
     /**
-     * Вспомогательный метод для имитации пользовательского ввода
+     * Вспомогательный метод для имитации пользовательского ввода.
      */
     private void setInput(String data) {
         InputStream inputStream = new ByteArrayInputStream(data.getBytes());
