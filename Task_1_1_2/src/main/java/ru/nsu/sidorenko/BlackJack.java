@@ -1,5 +1,6 @@
 package ru.nsu.sidorenko;
 
+
 import java.util.Scanner;
 
 /**
