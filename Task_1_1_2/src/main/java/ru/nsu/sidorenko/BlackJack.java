@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class BlackJack {
 
     Deck deck = new Deck();
-    Participant player = new Participant() {};
-    Participant dealer = new Participant() {};
+    Participant player = new Participant();
+    Participant dealer = new Participant();
     Scanner scanner = new Scanner(System.in);
     boolean dealerShowAll = false;
     boolean playerTurn = true;

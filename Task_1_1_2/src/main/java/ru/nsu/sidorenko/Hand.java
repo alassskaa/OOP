@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Класс для работы с картами на руках у участников.
  */
-public class final Hand {
+public final class Hand {
 
     private List<Card> cards = new ArrayList<>();
 

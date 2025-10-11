@@ -41,7 +41,7 @@ class BlackJackTest {
         );
 
         game.setDeck(fakeDeck);
-        setInput("1\n0\n0\n");
+        setInput("1\n0\n0\n0\n0\n");
 
         assertDoesNotThrow(() -> game.game());
     }
