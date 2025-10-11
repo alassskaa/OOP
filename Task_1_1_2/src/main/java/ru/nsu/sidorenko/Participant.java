@@ -3,7 +3,7 @@ package ru.nsu.sidorenko;
 /**
  * Класс для реализации действий участников.
  */
-public class Participant {
+public class final Participant {
     protected Hand hand = new Hand();
 
     /**
