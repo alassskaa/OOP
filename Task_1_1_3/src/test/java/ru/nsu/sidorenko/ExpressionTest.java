@@ -141,5 +141,18 @@ class ExpressionTest {
         assertEquals(5, e.eval(""));
         assertEquals(5, e.eval(null));
     }
+
+    @Test
+    void testDivDerivative() {
+        Expression e = new Div(new Variable("x"), new Variable("y"));
+        Expression de = e.derivative("x");
+        assertEquals("(((1*y)-(x*0))/(y*y))", de.print());
+    }
+
+    @Test
+    void testDivByZero() {
+        Expression e = new Div(new Number(10), new Number(0));
+        assertThrows(ArithmeticException.class, () -> e.eval(""));
+    }
 }
 
