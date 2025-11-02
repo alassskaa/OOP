@@ -1,9 +1,11 @@
 package ru.nsu.sidorenko;
 
+import java.util.Map;
+
 /**
  * Представляет операцию деления.
  */
-public class Div extends Expression {
+public class Div implements Expression {
     private final Expression left;
     private final Expression right;
 
@@ -19,8 +21,8 @@ public class Div extends Expression {
     }
     
     @Override
-    public String print() {
-        return "(" + left.print() + "/" + right.print() + ")";
+    public String toString() {
+        return "(" + left.toString() + "/" + right.toString() + ")";
     }
     
     @Override
@@ -34,12 +36,12 @@ public class Div extends Expression {
     }
     
     @Override
-    public int eval(String assignments) {
-        int rightValue = right.eval(assignments);
+    public int eval(Map<String, Integer> arguments) {
+        int rightValue = right.eval(arguments);
         if (rightValue == 0) {
             throw new ArithmeticException("Division by zero");
         }
-        return left.eval(assignments) / rightValue;
+        return left.eval(arguments) / rightValue;
     }
 
     /**

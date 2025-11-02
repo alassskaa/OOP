@@ -1,9 +1,11 @@
 package ru.nsu.sidorenko;
 
+import java.util.Map;
+
 /**
  * Представляет операцию умножения.
  */
-public class Mul extends Expression {
+public class Mul implements Expression {
     private final Expression left;
     private final Expression right;
 
@@ -19,8 +21,8 @@ public class Mul extends Expression {
     }
     
     @Override
-    public String print() {
-        return "(" + left.print() + "*" + right.print() + ")";
+    public String toString() {
+        return "(" + left.toString() + "*" + right.toString() + ")";
     }
     
     @Override
@@ -32,8 +34,8 @@ public class Mul extends Expression {
     }
     
     @Override
-    public int eval(String assignments) {
-        return left.eval(assignments) * right.eval(assignments);
+    public int eval(Map<String, Integer> arguments) {
+        return left.eval(arguments) * right.eval(arguments);
     }
 
     /**

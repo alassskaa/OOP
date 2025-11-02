@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Представляет переменную в выражении.
  */
-public class Variable extends Expression {
+public class Variable implements Expression {
     private final String name;
 
     /**
@@ -18,7 +18,7 @@ public class Variable extends Expression {
     }
     
     @Override
-    public String print() {
+    public String toString() {
         return name;
     }
     
@@ -33,12 +33,11 @@ public class Variable extends Expression {
     }
     
     @Override
-    public int eval(String assignments) {
-        Map<String, Integer> map = parseAssignments(assignments);
-        if (!map.containsKey(name)) {
+    public int eval(Map<String, Integer> arguments) {
+        if (arguments == null || !arguments.containsKey(name)) {
             throw new IllegalArgumentException("Variable is not assigned");
         }
-        return map.get(name);
+        return arguments.get(name);
     }
 
     /**

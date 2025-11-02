@@ -1,9 +1,11 @@
 package ru.nsu.sidorenko;
 
+import java.util.Map;
+
 /**
  * Класс для операции вычитания.
  */
-public class Sub extends Expression {
+public class Sub implements Expression {
     private final Expression left;
     private final Expression right;
 
@@ -19,8 +21,8 @@ public class Sub extends Expression {
     }
     
     @Override
-    public String print() {
-        return "(" + left.print() + "-" + right.print() + ")";
+    public String toString() {
+        return "(" + left.toString() + "-" + right.toString() + ")";
     }
     
     @Override
@@ -29,8 +31,8 @@ public class Sub extends Expression {
     }
     
     @Override
-    public int eval(String assignments) {
-        return left.eval(assignments) - right.eval(assignments);
+    public int eval(Map<String, Integer> arguments) {
+        return left.eval(arguments) - right.eval(arguments);
     }
 
     /**

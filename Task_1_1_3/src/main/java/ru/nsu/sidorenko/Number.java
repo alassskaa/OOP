@@ -1,9 +1,11 @@
 package ru.nsu.sidorenko;
 
+import java.util.Map;
+
 /**
  * Представляет числовую константу.
  */
-public class Number extends Expression {
+public class Number implements Expression {
     private final int value;
 
     /**
@@ -16,7 +18,7 @@ public class Number extends Expression {
     }
     
     @Override
-    public String print() {
+    public String toString() {
         return String.valueOf(value);
     }
     
@@ -26,7 +28,7 @@ public class Number extends Expression {
     }
     
     @Override
-    public int eval(String assignments) {
+    public int eval(Map<String, Integer> arguments) {
         return value;
     }
 
