@@ -31,7 +31,7 @@ public interface Expression {
     
     /**
      * Возвращает строковое представление выражения.
-     * 
+     *
      * @return строковое представление выражения
      */
     String toString();
@@ -46,7 +46,7 @@ public interface Expression {
     
     /**
      * Вычисляет выражение с заданными значениями переменных.
-     * 
+     *
      * @param arguments карта, содержащая имена переменных и их значения
      * @return вычисленный результат
      * @throws IllegalArgumentException если требуемая переменная отсутствует в карте arguments

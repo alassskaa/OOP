@@ -9,7 +9,8 @@ import java.util.Map;
 public class ExpressionParser {
     
     /**
-     * Преобразование выражения из строки. Все выражения, кроме переменных и констант, заключены в скобки.
+     * Преобразование выражения из строки.
+     * Все выражения, кроме переменных и констант, заключены в скобки.
      * 
      * @param str строковое представление выражения
      * @return разобранное выражение
@@ -70,7 +71,7 @@ public class ExpressionParser {
     /**
      * Вспомогательный метод для разбора строки с присваиваниями переменных.
      * Разбирает строку вида "x = 10; y = 20" в карту переменных и их значений.
-     * 
+     *
      * @param assignments строка с присваиваниями переменных, разделёнными точкой с запятой
      * @return карта с переменными и их значениями
      */
@@ -83,7 +84,9 @@ public class ExpressionParser {
         String[] parts = assignments.split(";");
         for (String part : parts) {
             String trimmed = part.trim();
-            if (trimmed.isEmpty()) continue;
+            if (trimmed.isEmpty()) {
+                continue;
+            }
             
             String[] assignment = trimmed.split("=");
             if (assignment.length == 2) {

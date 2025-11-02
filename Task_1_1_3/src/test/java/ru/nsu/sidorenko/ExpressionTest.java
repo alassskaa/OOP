@@ -1,10 +1,13 @@
 package ru.nsu.sidorenko;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ExpressionTest {
     
@@ -181,6 +184,20 @@ class ExpressionTest {
         Expression e = new Div(new Number(10), new Number(0));
         Map<String, Integer> args = new HashMap<>();
         assertThrows(ArithmeticException.class, () -> e.eval(args));
+    }
+
+    @Test
+    void testParseAssignments() {
+        Map<String, Integer> result = ExpressionParser.parseAssignments("x = 10; y = 20");
+        assertEquals(2, result.size());
+        assertEquals(10, result.get("x"));
+        assertEquals(20, result.get("y"));
+        
+        Map<String, Integer> empty = ExpressionParser.parseAssignments("");
+        assertTrue(empty.isEmpty());
+        
+        Map<String, Integer> nullResult = ExpressionParser.parseAssignments(null);
+        assertTrue(nullResult.isEmpty());
     }
 }
 
