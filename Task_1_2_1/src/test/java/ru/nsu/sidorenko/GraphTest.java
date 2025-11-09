@@ -1,14 +1,23 @@
 package ru.nsu.sidorenko;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+/**
+ * Тесты для всех реализаций графа.
+ */
 public class GraphTest {
     private Graph adjacencyListGraph;
     private Graph adjacencyMatrixGraph;
@@ -160,7 +169,8 @@ public class GraphTest {
         adjacencyListGraph.addEdge(2, 3);
         adjacencyListGraph.addEdge(3, 1);
         
-        assertThrows(IllegalStateException.class, () -> GraphAlgorithms.topologicalSort(adjacencyListGraph));
+        assertThrows(IllegalStateException.class,
+                () -> GraphAlgorithms.topologicalSort(adjacencyListGraph));
     }
 
     @Test
@@ -287,5 +297,61 @@ public class GraphTest {
             assertEquals(2, sorted.get(1));
             assertEquals(3, sorted.get(2));
         }
+    }
+
+    @Test
+    void testAdjacencyMatrixMatrixExpansion() {
+        for (int i = 0; i < 15; i++) {
+            adjacencyMatrixGraph.addVertex(i);
+        }
+        assertEquals(15, adjacencyMatrixGraph.getVertexCount());
+        adjacencyMatrixGraph.addEdge(0, 14);
+        assertTrue(adjacencyMatrixGraph.hasEdge(0, 14));
+    }
+
+    @Test
+    void testAdjacencyMatrixRemoveVertexWithReordering() {
+        adjacencyMatrixGraph.addVertex(0);
+        adjacencyMatrixGraph.addVertex(1);
+        adjacencyMatrixGraph.addVertex(2);
+        adjacencyMatrixGraph.addVertex(3);
+        adjacencyMatrixGraph.addEdge(0, 1);
+        adjacencyMatrixGraph.addEdge(1, 2);
+        adjacencyMatrixGraph.addEdge(2, 3);
+        
+        assertTrue(adjacencyMatrixGraph.removeVertex(1));
+        assertEquals(3, adjacencyMatrixGraph.getVertexCount());
+        assertTrue(adjacencyMatrixGraph.hasEdge(2, 3));
+        assertFalse(adjacencyMatrixGraph.hasEdge(0, 1));
+    }
+
+
+    @Test
+    void testIncidenceMatrixRemoveVertexWithReordering() {
+        incidenceMatrixGraph.addVertex(0);
+        incidenceMatrixGraph.addVertex(1);
+        incidenceMatrixGraph.addVertex(2);
+        incidenceMatrixGraph.addVertex(3);
+        incidenceMatrixGraph.addEdge(0, 1);
+        incidenceMatrixGraph.addEdge(1, 2);
+        incidenceMatrixGraph.addEdge(2, 3);
+        
+        assertTrue(incidenceMatrixGraph.removeVertex(1));
+        assertEquals(3, incidenceMatrixGraph.getVertexCount());
+        assertEquals(1, incidenceMatrixGraph.getEdgeCount());
+        assertTrue(incidenceMatrixGraph.hasEdge(2, 3));
+    }
+
+    @Test
+    void testIncidenceMatrixToString() {
+        incidenceMatrixGraph.addVertex(1);
+        incidenceMatrixGraph.addVertex(2);
+        incidenceMatrixGraph.addEdge(1, 2);
+        
+        String str = incidenceMatrixGraph.toString();
+        assertNotNull(str);
+        assertTrue(str.contains("IncidenceMatrixGraph"));
+        assertTrue(str.contains("Vertices: 2"));
+        assertTrue(str.contains("Edges: 1"));
     }
 }

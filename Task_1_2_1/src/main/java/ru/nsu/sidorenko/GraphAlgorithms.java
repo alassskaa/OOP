@@ -1,6 +1,11 @@
 package ru.nsu.sidorenko;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 /**
  * Класс с алгоритмами для работы с графами.
@@ -9,7 +14,7 @@ public class GraphAlgorithms {
     /**
      * Выполняет топологическую сортировку вершин ориентированного графа.
      * Использует алгоритм Кана.
-     * 
+     *
      * @param graph - ориентированный граф
      * @return список вершин в порядке топологической сортировки
      * @throws IllegalStateException если граф содержит циклы
@@ -23,7 +28,7 @@ public class GraphAlgorithms {
 
         Map<Integer, Integer> inDegree = new HashMap<>();
         List<Integer> vertices = graph.getVertices();
-        
+
         for (int vertex : vertices) {
             inDegree.put(vertex, 0);
         }
@@ -57,10 +62,10 @@ public class GraphAlgorithms {
         }
 
         if (result.size() != graph.getVertexCount()) {
-            throw new IllegalStateException("Graph contains a cycle, topological sort is impossible");
+            throw new IllegalStateException(
+                    "Graph contains a cycle, topological sort is impossible");
         }
 
         return result;
     }
 }
-

@@ -1,8 +1,8 @@
 package ru.nsu.sidorenko;
 
-import java.util.List;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Интерфейс для представления графа.

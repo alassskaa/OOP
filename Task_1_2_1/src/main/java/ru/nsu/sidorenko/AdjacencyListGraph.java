@@ -1,9 +1,16 @@
 package ru.nsu.sidorenko;
 
-import java.util.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Реализация графа через список смежности.
@@ -56,7 +63,8 @@ public class AdjacencyListGraph implements Graph {
 
     @Override
     public boolean addEdge(int from, int to) {
-        if (!vertices.contains(from) || !vertices.contains(to)) {
+        if (!vertices.contains(from)
+                || !vertices.contains(to)) {
             throw new IllegalArgumentException("Vertices must exist in the graph");
         }
         
@@ -69,10 +77,11 @@ public class AdjacencyListGraph implements Graph {
 
     @Override
     public boolean removeEdge(int from, int to) {
-        if (!vertices.contains(from) || !vertices.contains(to)) {
+        if (!vertices.contains(from)
+                || !vertices.contains(to)) {
             return false;
         }
-        
+
         if (adjacencyList.get(from).remove(to)) {
             edgeCount--;
             return true;
@@ -95,7 +104,8 @@ public class AdjacencyListGraph implements Graph {
 
     @Override
     public boolean hasEdge(int from, int to) {
-        if (!vertices.contains(from) || !vertices.contains(to)) {
+        if (!vertices.contains(from)
+                || !vertices.contains(to)) {
             return false;
         }
         return adjacencyList.get(from).contains(to);
@@ -156,8 +166,8 @@ public class AdjacencyListGraph implements Graph {
             return false;
         }
 
-        if (this.getVertexCount() != other.getVertexCount() || 
-            this.getEdgeCount() != other.getEdgeCount()) {
+        if (this.getVertexCount() != other.getVertexCount()
+                || this.getEdgeCount() != other.getEdgeCount()) {
             return false;
         }
 

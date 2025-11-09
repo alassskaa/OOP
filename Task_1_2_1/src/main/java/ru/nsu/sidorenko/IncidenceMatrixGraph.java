@@ -1,9 +1,14 @@
 package ru.nsu.sidorenko;
 
-import java.util.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Реализация графа через матрицу инцидентности.
@@ -35,7 +40,8 @@ public class IncidenceMatrixGraph implements Graph {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || getClass() != obj.getClass()) {
+            if (obj == null
+                    || getClass() != obj.getClass()) {
                 return false;
             }
             Edge edge = (Edge) obj;
@@ -60,7 +66,8 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     /**
-     * Проверяет, можно ли добавить новую вершину в зависимости от уже существующих. Если можно - добавляет.
+     * Проверяет, можно ли добавить новую вершину в зависимости от уже существующих.
+     * Если можно - добавляет.
      *
      * @param vertex - добавляемая вершина
      */
@@ -89,7 +96,8 @@ public class IncidenceMatrixGraph implements Graph {
             return false;
         }
 
-        edges.removeIf(edge -> edge.from == vertex || edge.to == vertex);
+        edges.removeIf(edge -> edge.from == vertex
+                || edge.to == vertex);
 
         vertexToIndex.remove(vertex);
         indexToVertex.remove(index);
@@ -110,7 +118,8 @@ public class IncidenceMatrixGraph implements Graph {
 
     @Override
     public boolean addEdge(int from, int to) {
-        if (!vertexToIndex.containsKey(from) || !vertexToIndex.containsKey(to)) {
+        if (!vertexToIndex.containsKey(from)
+                || !vertexToIndex.containsKey(to)) {
             throw new IllegalArgumentException("Vertices must exist in the graph");
         }
 
@@ -211,8 +220,8 @@ public class IncidenceMatrixGraph implements Graph {
             return false;
         }
 
-        if (this.getVertexCount() != other.getVertexCount() || 
-            this.getEdgeCount() != other.getEdgeCount()) {
+        if (this.getVertexCount() != other.getVertexCount()
+                || this.getEdgeCount() != other.getEdgeCount()) {
             return false;
         }
 
