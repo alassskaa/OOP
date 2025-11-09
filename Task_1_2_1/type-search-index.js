@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"ru.nsu.sidorenko","l":"AdjacencyListGraph"},{"p":"ru.nsu.sidorenko","l":"AdjacencyMatrixGraph"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.sidorenko","l":"Graph"},{"p":"ru.nsu.sidorenko","l":"GraphAlgorithms"},{"p":"ru.nsu.sidorenko","l":"IncidenceMatrixGraph"}];updateSearchResults();
