@@ -10,7 +10,15 @@ import java.util.Queue;
 /**
  * Класс с алгоритмами для работы с графами.
  */
-public class GraphAlgorithms {
+public final class GraphAlgorithms {
+
+    /**
+     * Приватный конструктор, чтобы запретить создание экземпляров класса.
+     */
+    private GraphAlgorithms() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
     /**
      * Выполняет топологическую сортировку вершин ориентированного графа.
      * Использует алгоритм Кана.

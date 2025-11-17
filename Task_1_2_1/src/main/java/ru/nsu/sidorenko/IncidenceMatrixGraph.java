@@ -24,37 +24,6 @@ public class IncidenceMatrixGraph implements Graph {
     private int maxIndex;
 
     /**
-     * Внутренний класс для представления ребра.
-     */
-    private static class Edge {
-        int from;
-        int to;
-
-        Edge(int from, int to) {
-            this.from = from;
-            this.to = to;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null
-                    || getClass() != obj.getClass()) {
-                return false;
-            }
-            Edge edge = (Edge) obj;
-            return from == edge.from && to == edge.to;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(from, to);
-        }
-    }
-
-    /**
      * Конструктор создаёт пустой граф.
      */
     public IncidenceMatrixGraph() {
@@ -281,5 +250,36 @@ public class IncidenceMatrixGraph implements Graph {
         }
         sb.append("}");
         return sb.toString();
+    }
+
+    /**
+     * Внутренний класс для представления ребра.
+     */
+    private static class Edge {
+        int from;
+        int to;
+
+        Edge(int from, int to) {
+            this.from = from;
+            this.to = to;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null
+                    || getClass() != obj.getClass()) {
+                return false;
+            }
+            Edge edge = (Edge) obj;
+            return from == edge.from && to == edge.to;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(from, to);
+        }
     }
 }

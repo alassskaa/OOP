@@ -100,20 +100,4 @@ public interface Graph {
      */
     void readFromFile(File file) throws IOException;
 
-    /**
-     * Проверяет равенство двух графов.
-     *
-     * @param obj - объект для сравнения
-     * @return true, если графы равны
-     */
-    @Override
-    boolean equals(Object obj);
-
-    /**
-     * Возвращает строковое представление графа.
-     *
-     * @return строковое представление
-     */
-    @Override
-    String toString();
 }
