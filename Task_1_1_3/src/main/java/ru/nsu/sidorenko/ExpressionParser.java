@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Вспомогательный класс для парсинга математических выражений и строк c переменными.
  */
-public class ExpressionParser {
+public final class ExpressionParser {
     
     /**
      * Преобразование выражения из строки.
@@ -96,5 +96,9 @@ public class ExpressionParser {
             }
         }
         return map;
+    }
+
+    private ExpressionParser() {
+        throw new UnsupportedOperationException();
     }
 }
