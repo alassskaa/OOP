@@ -293,8 +293,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         Objects.requireNonNull(key, "key must not be null");
         int idx = index(key, capacity);
         Node<K, V> n = table[idx];
-        while (n != null)
-        {
+        while (n != null) {
             if (Objects.equals(n.key, key)) {
                 return n;
             }
