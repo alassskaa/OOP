@@ -86,10 +86,14 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">HashTable&lt;K,<wbr>V&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html" title="class or interface in java.lang" class="external-link">Iterable</a>&lt;<a href="Entry.html" title="class in ru.nsu.sidorenko">Entry</a>&lt;K,<wbr>V&gt;&gt;</span></div>
-<div class="block">Главный класс для работы с хэш-таблицами.
+<div class="block">Класс для работы с хэш-таблицами.
  Поддерживаются различные функции для работы с таблицами: добавление
- элемента, удаление элемента, сравнение таблиц и другие ф-ии.
- Обработка коллизий реализована при помощи цепочек.</div>
+ элемента, удаление элемента, сравнение таблиц, итерирование по парам ключ-значение
+ и другие ф-ии.
+
+ Обработка коллизий реализована при помощи цепочек: если два элемента
+ (ключ - значение) попадают в один бакет (корзину) то они помещаются
+ следующим элементом в массив, соответствующий этому бакету.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
