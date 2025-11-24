@@ -1,15 +1,18 @@
 package ru.nsu.sidorenko;
 
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
- * Главный класс для работы с хэш-таблицами.
+ * Класс для работы с хэш-таблицами.
  * Поддерживаются различные функции для работы с таблицами: добавление
- * элемента, удаление элемента, сравнение таблиц и другие ф-ии.
- * Обработка коллизий реализована при помощи цепочек.
+ * элемента, удаление элемента, сравнение таблиц, итерирование по парам ключ-значение
+ * и другие ф-ии.
+ *
+ * Обработка коллизий реализована при помощи цепочек: если два элемента
+ * (ключ - значение) попадают в один бакет (корзину) то они помещаются
+ * следующим элементом в массив, соответствующий этому бакету.
  *
  * @param <K> - тип ключа.
  * @param <V> - тип значения.
@@ -18,23 +21,6 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
     private static final int DEFAULT_CAPACITY = 16; //начальный размер
     private static final float DEFAULT_LOAD_FACTOR = 0.75f; //коэффициент загрузки
     private static final float SHRINK_LOAD_FACTOR = 0.25f; //коэффициент сжатия
-
-    /**
-     * Класс для создания элемента цепочки, хранящейся по ключу.
-     *
-     * @param <K> - тип ключа.
-     * @param <V> - тип значения.
-     */
-    private static final class Node<K, V> {
-        final K key;
-        V value;
-        Node<K, V> next;
-        Node(K key, V value, Node<K, V> next) {
-            this.key = key;
-            this.value = value;
-            this.next = next;
-        }
-    }
 
     private Node<K, V>[] table;
     private int size;
@@ -175,63 +161,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
 
     @Override
     public Iterator<Entry<K, V>> iterator() {
-        return new Itr();
-    }
-
-    /**
-     * Внутренний служебный класс для перебора элементов таблицы. Не вынесен в отдельный
-     * файл, чтобы иметь доступ к приватным полям класса HashTable.
-     */
-    private final class Itr implements Iterator<Entry<K, V>> {
-        private int chainIndex = 0; //текущая цепочка
-        private Node<K, V> currentNode = null; //текущий элемент в цепочке
-
-        /**
-         * Метод, который "двигает" итератор вперед, делая шаг в цикле.
-         * Переходит к следующей паре в цепочку или к следующей цепочке, если
-         * в данной нет следующей пары.
-         * Изменяет значение currentNode на null, если не найден следующий элемент.
-         */
-        private void toNext() {
-            if (currentNode != null) {
-                currentNode = currentNode.next;
-                if (currentNode != null) {
-                    return;
-                }
-                chainIndex++;
-            }
-            while (chainIndex < capacity && table[chainIndex] == null) {
-                chainIndex++;
-            }
-            currentNode = (chainIndex < capacity) ? table[chainIndex] : null;
-        }
-
-        @Override
-        public boolean hasNext() {
-            if (currentNode == null) {
-                int savedBucket = chainIndex;
-                Node<K, V> savedNode = currentNode;
-                toNext();
-                boolean has = (currentNode != null);
-                chainIndex = savedBucket;
-                currentNode = savedNode;
-                return has;
-            }
-            return true;
-        }
-
-        @Override
-        public Entry<K, V> next() {
-            if (currentNode == null) {
-                toNext();
-            }
-            if (currentNode == null) {
-                throw new NoSuchElementException();
-            }
-            Entry<K, V> e = new Entry<>(currentNode.key, currentNode.value);
-            toNext();
-            return e;
-        }
+        return new TableIterator();
     }
 
     @Override
@@ -356,5 +286,77 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
         capacity = newCap;
         thresholdGrow = (int) (capacity * loadFactor);
         thresholdShrink = (int) (capacity * SHRINK_LOAD_FACTOR);
+    }
+    /**
+     *
+     * Класс для создания элемента цепочки, хранящейся по ключу.
+     *
+     * @param <K> - тип ключа.
+     * @param <V> - тип значения.
+     */
+    private static final class Node<K, V> {
+        final K key;
+        V value;
+        Node<K, V> next;
+        Node(K key, V value, Node<K, V> next) {
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+    }
+    /**
+     * Внутренний служебный класс для перебора элементов таблицы. Не вынесен в отдельный
+     * файл, чтобы иметь доступ к приватным полям класса HashTable.
+     */
+    private final class TableIterator implements Iterator<Entry<K, V>> {
+        private int chainIndex = 0; //текущая цепочка
+        private Node<K, V> currentNode = null; //текущий элемент в цепочке
+
+        /**
+         * Метод, который "двигает" итератор вперед, делая шаг в цикле.
+         * Переходит к следующей паре в цепочку или к следующей цепочке, если
+         * в данной нет следующей пары.
+         * Изменяет значение currentNode на null, если не найден следующий элемент.
+         */
+        private void toNext() {
+            if (currentNode != null) {
+                currentNode = currentNode.next;
+                if (currentNode != null) {
+                    return;
+                }
+                chainIndex++;
+            }
+            while (chainIndex < capacity && table[chainIndex] == null) {
+                chainIndex++;
+            }
+            currentNode = (chainIndex < capacity) ? table[chainIndex] : null;
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (currentNode == null) {
+                int savedBucket = chainIndex;
+                Node<K, V> savedNode = currentNode;
+                toNext();
+                boolean has = (currentNode != null);
+                chainIndex = savedBucket;
+                currentNode = savedNode;
+                return has;
+            }
+            return true;
+        }
+
+        @Override
+        public Entry<K, V> next() {
+            if (currentNode == null) {
+                toNext();
+            }
+            if (currentNode == null) {
+                throw new NoSuchElementException();
+            }
+            Entry<K, V> e = new Entry<>(currentNode.key, currentNode.value);
+            toNext();
+            return e;
+        }
     }
 }
