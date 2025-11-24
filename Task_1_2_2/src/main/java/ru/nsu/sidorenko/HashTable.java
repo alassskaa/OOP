@@ -116,7 +116,7 @@ public class HashTable<K, V> implements Iterable<Entry<K, V>> {
      * Метод для обновления значения по ключу.
      *
      * @param key - ключ.
-     * @param value- значение.
+     * @param value - значение.
      * @return вернет старое значение.
      */
     public V update(K key, V value) {
