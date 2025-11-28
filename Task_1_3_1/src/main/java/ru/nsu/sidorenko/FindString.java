@@ -1,10 +1,9 @@
 package ru.nsu.sidorenko;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -102,10 +101,10 @@ public class FindString {
      * @throws IOException - исключение ошибки чтения файла.
      */
     public int checkSurrogate(BufferedReader reader, int cp) throws IOException {
-        if (Character.isHighSurrogate((char)cp)) {
+        if (Character.isHighSurrogate((char) cp)) {
             int low = reader.read();
-            if (low != -1 && Character.isLowSurrogate((char)low)) {
-                cp = Character.toCodePoint((char)cp, (char)low);
+            if (low != -1 && Character.isLowSurrogate((char) low)) {
+                cp = Character.toCodePoint((char) cp, (char) low);
                 return cp;
             }
         }

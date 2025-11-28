@@ -1,12 +1,13 @@
 package ru.nsu.sidorenko;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FindStringTest {
 
@@ -81,8 +82,8 @@ class FindStringTest {
     @Test
     void withReturn() throws IOException {
         String fileName = "test6.txt";
-        String content = "абракадабр\n" +
-                "a";
+        String content = "абракадабр\n"
+                + "a";
 
         writeToFile(fileName, content);
         FindString fs = new FindString();
