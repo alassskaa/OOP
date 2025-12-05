@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.*;
 import org.junit.jupiter.api.Test;
 
-class FindStringTest {
+class StringFinderTest {
 
     /**
      * Вспомогательный метод для генерации временных файлов для тестов.
@@ -29,7 +29,7 @@ class FindStringTest {
         String fileName = "test1.txt";
         writeToFile(fileName, "абракадабра");
 
-        FindString fs = new FindString();
+        StringFinder fs = new StringFinder();
         fs.find(fileName, "бра");
 
         assertEquals(List.of(1, 8), fs.answer);
@@ -40,7 +40,7 @@ class FindStringTest {
         String fileName = "test2.txt";
         writeToFile(fileName, "阿贝beijing非fēig贝beijingěi得");
 
-        FindString fs = new FindString();
+        StringFinder fs = new StringFinder();
         fs.find(fileName, "贝beijing");
 
         assertEquals(List.of(1, 14), fs.answer);
@@ -51,7 +51,7 @@ class FindStringTest {
         String fileName = "test3.txt";
         writeToFile(fileName, "\uD83D\uDE00gdgdhsk\uD83D\uDE00g");
 
-        FindString fs = new FindString();
+        StringFinder fs = new StringFinder();
         fs.find(fileName, "\uD83D\uDE00g");
 
         assertEquals(List.of(0, 8), fs.answer);
@@ -62,7 +62,7 @@ class FindStringTest {
         String fileName = "test4.txt";
         writeToFile(fileName, "абракадабра");
 
-        FindString fs = new FindString();
+        StringFinder fs = new StringFinder();
         fs.find(fileName, "бра");
 
         assertNotEquals(List.of(2, 3, 4), fs.answer);
@@ -75,7 +75,7 @@ class FindStringTest {
 
         writeToFile(fileName, content);
 
-        FindString fs = new FindString();
+        StringFinder fs = new StringFinder();
         assertDoesNotThrow(() -> fs.find(fileName, content));
     }
 
@@ -86,7 +86,7 @@ class FindStringTest {
                 + "a";
 
         writeToFile(fileName, content);
-        FindString fs = new FindString();
+        StringFinder fs = new StringFinder();
         fs.find(fileName, "бра");
 
         assertEquals(List.of(1), fs.answer);
@@ -98,7 +98,7 @@ class FindStringTest {
         String content = "lalalalal";
 
         writeToFile(fileName, content);
-        FindString fs = new FindString();
+        StringFinder fs = new StringFinder();
         fs.find(fileName, "lflf");
 
         assertEquals(List.of(), fs.answer);
@@ -109,7 +109,7 @@ class FindStringTest {
         String fileName = "test8.txt";
         writeToFile(fileName, "абабаб");
 
-        FindString fs = new FindString();
+        StringFinder fs = new StringFinder();
         fs.find(fileName, "абаб");
 
         assertEquals(List.of(0, 2), fs.answer);

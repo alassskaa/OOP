@@ -18,7 +18,7 @@ import java.util.Queue;
  * по его файлу при помощи скользящего окна, реализованного
  * через очереди.
  */
-public class FindString {
+public class StringFinder {
     private int idx = 0;
     ArrayList<Integer> answer = new ArrayList<>();
     Queue<Integer> window = new LinkedList<>();
@@ -34,6 +34,54 @@ public class FindString {
     public void find(String fileName, String str) throws IOException {
         int[] st = str.codePoints().toArray();
 
+        readNextUTF8Character(fileName, st);
+
+    }
+
+    /**
+     * Метод для проверки соответствия длины паттерна и подстроки,
+     * находящейся в окне в данный момент.
+     *
+     * @param st - массив кодовых точек символов паттерна.
+     */
+    public void checkLength(int[] st) {
+        int length = st.length;
+        int i = 0;
+        if (length == window.size()) {
+            if ((i = myCompare(window, st)) != -1) {
+                answer.add(idx - i);
+            }
+        } else if (length < window.size()) {
+            window.remove();
+            if ((i = myCompare(window, st)) != -1) {
+                answer.add(idx - i);
+            }
+        }
+    }
+
+    /**
+     * Метод для сравнения кодовых точек элементов, находящихся в очереди,
+     * с кодовыми точками элементов паттерна.
+     *
+     * @param q  - очередь кодовых точек элементов, находящихся в окне.
+     * @param st - массив кодовых точек элементов паттерна.
+     */
+    public int myCompare(Queue<Integer> q, int[] st) {
+        int i = 0;
+        for (int el : q) {
+            if (el == st[i]) {
+                i += 1;
+            } else {
+                break;
+            }
+        }
+        if (i == st.length) {
+            return i;
+        }
+        return -1;
+    }
+
+    public void readNextUTF8Character(String fileName, int[] st) throws IOException {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8))) {
             int c;
@@ -46,44 +94,6 @@ public class FindString {
             }
         } catch (IOException exc) {
             System.out.println(exc.getMessage());
-        }
-
-    }
-
-    /**
-     * Метод для проверки соответствия длины паттерна и подстроки,
-     * находящейся в окне в данный момент.
-     *
-     * @param st - массив кодовых точек символов паттерна.
-     */
-    public void checkLength(int[] st) {
-        int length = st.length;
-        if (length == window.size()) {
-            myCompare(window, st);
-        } else if (length < window.size()) {
-            window.remove();
-            myCompare(window, st);
-        }
-    }
-
-    /**
-     * Метод для сравнения кодовых точек элементов, находящихся в очереди,
-     * с кодовыми точками элементов паттерна.
-     *
-     * @param q - очередь кодовых точек элементов, находящихся в окне.
-     * @param st - массив кодовых точек элементов паттерна.
-     */
-    public void myCompare(Queue<Integer> q, int[] st) {
-        int i = 0;
-        for (int el : q) {
-            if (el == st[i]) {
-                i += 1;
-            } else {
-                break;
-            }
-        }
-        if (i == st.length) {
-            answer.add(idx - i);
         }
     }
 
