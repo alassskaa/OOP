@@ -1,8 +1,8 @@
 package ru.nsu.sidorenko;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -24,8 +24,7 @@ public class StringFinder {
     Queue<Integer> window = new LinkedList<>();
 
     /**
-     * Основной метод для поиска подстроки, читающий содержимое
-     * из файла при помощи BufferedReader.
+     * Основной метод для поиска подстроки.
      *
      * @param fileName - имя файла, из которого происходит чтение.
      * @param str - паттерн (строка, которой должны соответствовать подстроки).
@@ -81,6 +80,14 @@ public class StringFinder {
         return -1;
     }
 
+    /**
+     * Отдельный метод для чтения символов из файла при помощи
+     * BufferedReader.
+     *
+     * @param fileName - имя файла, из которого происходит чтение.
+     * @param st - массив кодовых точек паттерна.
+     * @throws IOException - исключение ошибки обработки файла.
+     */
     public void readNextUTF8Character(String fileName, int[] st) throws IOException {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8))) {
