@@ -1,11 +1,7 @@
 package ru.nsu.sidorenko;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,7 +24,6 @@ public class StringFinder {
     /**
      * Основной метод для поиска подстроки.
      *
-     * @param fileName - имя файла, из которого происходит чтение.
      * @param pattern - паттерн (строка, которой должны соответствовать подстроки).
      * @throws IOException - исключение ошибки чтения файла, обработанное при помощи try.
      */
