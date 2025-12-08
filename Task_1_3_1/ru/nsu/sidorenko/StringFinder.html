@@ -116,32 +116,15 @@ loadScripts(document, 'script');</script>
 <div class="block">Метод для проверки соответствия длины паттерна и подстроки,
  находящейся в окне в данный момент.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkSurrogate(java.io.BufferedReader,int)" class="member-name-link">checkSurrogate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/BufferedReader.html" title="class or interface in java.io" class="external-link">BufferedReader</a>&nbsp;reader,
- int&nbsp;cp)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#find(java.io.Reader,java.lang.String)" class="member-name-link">find</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Reader.html" title="class or interface in java.io" class="external-link">Reader</a>&nbsp;reader,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pattern)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Метод для проверки, является ли символ суррогатной парой.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#find(java.lang.String,java.lang.String)" class="member-name-link">find</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fileName,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Основной метод для поиска подстроки.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#myCompare(java.util.Queue,int%5B%5D)" class="member-name-link">myCompare</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Queue.html" title="class or interface in java.util" class="external-link">Queue</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;q,
- int[]&nbsp;st)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Метод для сравнения кодовых точек элементов, находящихся в очереди,
- с кодовыми точками элементов паттерна.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readNextUTF8Character(java.lang.String,int%5B%5D)" class="member-name-link">readNextUTF8Character</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fileName,
- int[]&nbsp;st)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Отдельный метод для чтения символов из файла при помощи
- BufferedReader.</div>
-</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAnswer()" class="member-name-link">getAnswer</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -174,19 +157,24 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="find(java.lang.String,java.lang.String)">
+<section class="detail" id="find(java.io.Reader,java.lang.String)">
 <h3>find</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">find</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fileName,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;str)</span>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">find</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Reader.html" title="class or interface in java.io" class="external-link">Reader</a>&nbsp;reader,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pattern)</span>
           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
 <div class="block">Основной метод для поиска подстроки.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>fileName</code> - - имя файла, из которого происходит чтение.</dd>
-<dd><code>str</code> - - паттерн (строка, которой должны соответствовать подстроки).</dd>
+<dd><code>pattern</code> - - паттерн (строка, которой должны соответствовать подстроки).</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - - исключение ошибки чтения файла, обработанное при помощи try.</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getAnswer()">
+<h3>getAnswer</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">getAnswer</span>()</div>
 </section>
 </li>
 <li>
@@ -198,60 +186,6 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>st</code> - - массив кодовых точек символов паттерна.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="myCompare(java.util.Queue,int[])">
-<h3>myCompare</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">myCompare</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Queue.html" title="class or interface in java.util" class="external-link">Queue</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;q,
- int[]&nbsp;st)</span></div>
-<div class="block">Метод для сравнения кодовых точек элементов, находящихся в очереди,
- с кодовыми точками элементов паттерна.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>q</code> - - очередь кодовых точек элементов, находящихся в окне.</dd>
-<dd><code>st</code> - - массив кодовых точек элементов паттерна.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="readNextUTF8Character(java.lang.String,int[])">
-<h3>readNextUTF8Character</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">readNextUTF8Character</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fileName,
- int[]&nbsp;st)</span>
-                           throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">Отдельный метод для чтения символов из файла при помощи
- BufferedReader.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>fileName</code> - - имя файла, из которого происходит чтение.</dd>
-<dd><code>st</code> - - массив кодовых точек паттерна.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - - исключение ошибки обработки файла.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="checkSurrogate(java.io.BufferedReader,int)">
-<h3>checkSurrogate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">checkSurrogate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/BufferedReader.html" title="class or interface in java.io" class="external-link">BufferedReader</a>&nbsp;reader,
- int&nbsp;cp)</span>
-                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
-<div class="block">Метод для проверки, является ли символ суррогатной парой. Если
- считанный байт является верхним суррогатом, то он и следующий
- байт - суррогатная пара. Кодовая точка суррогатной пары
- определяется как сумма кодовых точек верхнего и нижнего суррогатов.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>reader</code> - - файл, из которого происходит чтение.</dd>
-<dd><code>cp</code> - - считанный байт для проверки на верхний суррогат.</dd>
-<dt>Returns:</dt>
-<dd>вернет кодовую точку считанного символа. Если байт оказался
- верхним суррогатом, произойдет считывание следующего байта и вернется сумма
- их кодовых точек. Если байт не был верхним суррогатом, вернется его кодовая точка.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code> - - исключение ошибки чтения файла.</dd>
 </dl>
 </section>
 </li>
