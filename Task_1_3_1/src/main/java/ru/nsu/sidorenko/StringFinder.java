@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -20,21 +22,30 @@ import java.util.Queue;
  */
 public class StringFinder {
     private int idx = 0;
-    ArrayList<Integer> answer = new ArrayList<>();
-    Queue<Integer> window = new LinkedList<>();
+    private List<Integer> answer = new ArrayList<>();
+    private Queue<Integer> window = new LinkedList<>();
 
     /**
      * Основной метод для поиска подстроки.
      *
      * @param fileName - имя файла, из которого происходит чтение.
-     * @param str - паттерн (строка, которой должны соответствовать подстроки).
+     * @param pattern - паттерн (строка, которой должны соответствовать подстроки).
      * @throws IOException - исключение ошибки чтения файла, обработанное при помощи try.
      */
-    public void find(String fileName, String str) throws IOException {
-        int[] st = str.codePoints().toArray();
+    public void find(Reader reader, String pattern) throws IOException {
+        int[] st = pattern.codePoints().toArray();
 
-        readNextUTF8Character(fileName, st);
+        int c;
+        while ((c = readNextChar(reader)) != -1) {
+            window.add(c);
+            idx += 1;
+            checkLength(st);
+        }
 
+    }
+
+    public List<Integer> getAnswer() {
+        return answer;
     }
 
     /**
@@ -58,6 +69,21 @@ public class StringFinder {
         }
     }
 
+    private int readNextChar(Reader reader) throws IOException {
+        int c = reader.read();
+        if (c == -1) {
+            return -1;
+        }
+        if (Character.isHighSurrogate((char) c)) {
+            int low = reader.read();
+            if (low == -1 || !Character.isLowSurrogate((char) low)) {
+                throw new IOException("Incorrect symbol");
+            }
+            return Character.toCodePoint((char) c, (char) low);
+        }
+        return c;
+    }
+
     /**
      * Метод для сравнения кодовых точек элементов, находящихся в очереди,
      * с кодовыми точками элементов паттерна.
@@ -65,7 +91,7 @@ public class StringFinder {
      * @param q  - очередь кодовых точек элементов, находящихся в окне.
      * @param st - массив кодовых точек элементов паттерна.
      */
-    public int myCompare(Queue<Integer> q, int[] st) {
+    private int myCompare(Queue<Integer> q, int[] st) {
         int i = 0;
         for (int el : q) {
             if (el == st[i]) {
@@ -78,53 +104,5 @@ public class StringFinder {
             return i;
         }
         return -1;
-    }
-
-    /**
-     * Отдельный метод для чтения символов из файла при помощи
-     * BufferedReader.
-     *
-     * @param fileName - имя файла, из которого происходит чтение.
-     * @param st - массив кодовых точек паттерна.
-     * @throws IOException - исключение ошибки обработки файла.
-     */
-    public void readNextUTF8Character(String fileName, int[] st) throws IOException {
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8))) {
-            int c;
-            while ((c = reader.read()) != -1) {
-                int cp = c;
-
-                window.add(checkSurrogate(reader, cp));
-                idx += 1;
-                checkLength(st);
-            }
-        } catch (IOException exc) {
-            System.out.println(exc.getMessage());
-        }
-    }
-
-    /**
-     * Метод для проверки, является ли символ суррогатной парой. Если
-     * считанный байт является верхним суррогатом, то он и следующий
-     * байт - суррогатная пара. Кодовая точка суррогатной пары
-     * определяется как сумма кодовых точек верхнего и нижнего суррогатов.
-     *
-     * @param reader - файл, из которого происходит чтение.
-     * @param cp - считанный байт для проверки на верхний суррогат.
-     * @return вернет кодовую точку считанного символа. Если байт оказался
-     * верхним суррогатом, произойдет считывание следующего байта и вернется сумма
-     * их кодовых точек. Если байт не был верхним суррогатом, вернется его кодовая точка.
-     * @throws IOException - исключение ошибки чтения файла.
-     */
-    public int checkSurrogate(BufferedReader reader, int cp) throws IOException {
-        if (Character.isHighSurrogate((char) cp)) {
-            int low = reader.read();
-            if (low != -1 && Character.isLowSurrogate((char) low)) {
-                cp = Character.toCodePoint((char) cp, (char) low);
-                return cp;
-            }
-        }
-        return cp;
     }
 }

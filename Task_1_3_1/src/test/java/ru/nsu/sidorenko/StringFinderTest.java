@@ -6,113 +6,92 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class StringFinderTest {
 
-    /**
-     * Вспомогательный метод для генерации временных файлов для тестов.
-     *
-     * @param fileName - имя файла.
-     * @param content - содержимое файла.
-     * @throws IOException - исключение при ошибках.
-     */
-    private void writeToFile(String fileName, String content) throws IOException {
-        try (FileWriter fw = new FileWriter(fileName)) {
-            fw.write(content);
-        }
-    }
-
     @Test
     void testSimpleMatch() throws IOException {
-        String fileName = "test1.txt";
-        writeToFile(fileName, "абракадабра");
+        Reader reader = new StringReader( "абракадабра");
 
         StringFinder fs = new StringFinder();
-        fs.find(fileName, "бра");
+        fs.find(reader, "бра");
 
-        assertEquals(List.of(1, 8), fs.answer);
+        assertEquals(List.of(1, 8), fs.getAnswer());
     }
 
     @Test
     void chinaTest() throws IOException {
-        String fileName = "test2.txt";
-        writeToFile(fileName, "阿贝beijing非fēig贝beijingěi得");
+        Reader reader = new StringReader("阿贝beijing非fēig贝beijingěi得");
 
         StringFinder fs = new StringFinder();
-        fs.find(fileName, "贝beijing");
+        fs.find(reader, "贝beijing");
 
-        assertEquals(List.of(1, 14), fs.answer);
+        assertEquals(List.of(1, 14), fs.getAnswer());
     }
 
     @Test
     void emojiTest() throws IOException {
-        String fileName = "test3.txt";
-        writeToFile(fileName, "\uD83D\uDE00gdgdhsk\uD83D\uDE00g");
+        Reader reader = new StringReader( "\uD83D\uDE00gdgdhsk\uD83D\uDE00g");
 
         StringFinder fs = new StringFinder();
-        fs.find(fileName, "\uD83D\uDE00g");
+        fs.find(reader, "\uD83D\uDE00g");
 
-        assertEquals(List.of(0, 8), fs.answer);
+        assertEquals(List.of(0, 8), fs.getAnswer());
     }
 
     @Test
     void wrongAnswer() throws IOException {
-        String fileName = "test4.txt";
-        writeToFile(fileName, "абракадабра");
+        Reader reader = new StringReader( "абракадабра");
 
         StringFinder fs = new StringFinder();
-        fs.find(fileName, "бра");
+        fs.find(reader, "бра");
 
-        assertNotEquals(List.of(2, 3, 4), fs.answer);
+        assertNotEquals(List.of(2, 3, 4), fs.getAnswer());
     }
 
     @Test
     void bigFile() throws IOException {
-        String fileName = "test5.txt";
         String content = " " + "бра".repeat(10000);
 
-        writeToFile(fileName, content);
-
         StringFinder fs = new StringFinder();
-        assertDoesNotThrow(() -> fs.find(fileName, content));
+        assertDoesNotThrow(() -> fs.find(new StringReader(content), content));
     }
 
     @Test
     void withReturn() throws IOException {
-        String fileName = "test6.txt";
         String content = "абракадабр\n"
                 + "a";
 
-        writeToFile(fileName, content);
+        Reader reader = new StringReader(content);
         StringFinder fs = new StringFinder();
-        fs.find(fileName, "бра");
+        fs.find(reader, "бра");
 
-        assertEquals(List.of(1), fs.answer);
+        assertEquals(List.of(1), fs.getAnswer());
     }
 
     @Test
     void noMatch() throws IOException {
-        String fileName = "test7.txt";
         String content = "lalalalal";
 
-        writeToFile(fileName, content);
+        Reader reader = new StringReader(content);
         StringFinder fs = new StringFinder();
-        fs.find(fileName, "lflf");
+        fs.find(reader, "lflf");
 
-        assertEquals(List.of(), fs.answer);
+        assertEquals(List.of(), fs.getAnswer());
     }
 
     @Test
     void testOverlappingMatches() throws IOException {
-        String fileName = "test8.txt";
-        writeToFile(fileName, "абабаб");
+        Reader reader = new StringReader( "абабаб");
 
         StringFinder fs = new StringFinder();
-        fs.find(fileName, "абаб");
+        fs.find(reader, "абаб");
 
-        assertEquals(List.of(0, 2), fs.answer);
+        assertEquals(List.of(0, 2), fs.getAnswer());
     }
 
 
