@@ -1,10 +1,12 @@
 package ru.nsu.sidorenko;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class StringFinderTest {
 
@@ -18,6 +20,18 @@ public class StringFinderTest {
     void testBoldSerialize() {
         Bold bold = new Bold("Bold");
         assertEquals("**Bold**", bold.serialize());
+    }
+
+    @Test
+    void testItalicSerialize() {
+        Italic italic = new Italic("Italic");
+        assertEquals("*Italic*", italic.serialize());
+    }
+
+    @Test
+    void testQuoteSerialize() {
+        Quote quote = new Quote(new Text("Quote"));
+        assertEquals("> Quote", quote.serialize());
     }
 
     @Test
@@ -138,5 +152,26 @@ public class StringFinderTest {
         assertEquals(4, lines.length);
         assertTrue(lines[2].contains("1"));
         assertTrue(lines[3].contains("2") || lines[3].contains("3"));
+    }
+
+    @Test
+    void testEqualsSameClassSameContent() {
+        Element t1 = new Text("Hello");
+        Element t2 = new Text("Hello");
+        assertEquals(t1, t2);
+    }
+
+    @Test
+    void testEqualsSameClassDifferentContent() {
+        Element t1 = new Text("Hello");
+        Element t2 = new Text("World");
+        assertNotEquals(t1, t2);
+    }
+
+    @Test
+    void testHashCodeConsistency() {
+        Element t1 = new Text("Hello");
+        Element t2 = new Text("Hello");
+        assertEquals(t1.hashCode(), t2.hashCode());
     }
 }

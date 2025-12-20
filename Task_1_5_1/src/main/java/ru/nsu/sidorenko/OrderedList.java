@@ -1,8 +1,6 @@
 package ru.nsu.sidorenko;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Реализация текстового представления нумерованных списков.

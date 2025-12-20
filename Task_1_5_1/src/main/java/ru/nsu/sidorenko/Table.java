@@ -46,7 +46,7 @@ public class Table extends Element {
         }
 
         List<List<String>> serializedRows = new ArrayList<>();
-        for (List<Element> row : rows) { //перевод каждого элемента таблицы в текстовое представление
+        for (List<Element> row : rows) { //перевод каждого элемента в текстовое представление
             List<String> serializedRow = new ArrayList<>();
             for (Element cell : row) {
                 serializedRow.add(cell.serialize());
