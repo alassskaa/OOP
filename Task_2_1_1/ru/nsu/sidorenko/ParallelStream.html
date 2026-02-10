@@ -76,6 +76,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ParallelStream</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Класс, реализующий параллельную проверку списка чисел.
+ Проверяется, есть ли в списке составные числа.
+ Для реализации параллельного подхода использован метод parallelStream().</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,7 +108,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#check(java.util.List)" class="member-name-link">check</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;list)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Основная функция для проверки списка на наличие в нем составных чисел.</div>
+</div>
 </div>
 </div>
 </div>
@@ -141,6 +146,15 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="check(java.util.List)">
 <h3>check</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">check</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;list)</span></div>
+<div class="block">Основная функция для проверки списка на наличие в нем составных чисел.
+ Используется метод parallelStream(). При помощи метода anyMatch() производится
+ проверка на наличие в списке составных чисел.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>list</code> - - обрабатываемый список.</dd>
+<dt>Returns:</dt>
+<dd>результат.</dd>
+</dl>
 </section>
 </li>
 </ul>
