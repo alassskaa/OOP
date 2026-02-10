@@ -1,14 +1,16 @@
 package ru.nsu.sidorenko;
 
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Класс тестов для файла ParallelStream.
+ */
 public class ParallelStreamTest {
 
     @Test
