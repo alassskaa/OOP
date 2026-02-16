@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.sidorenko","l":"Parallel"},{"p":"ru.nsu.sidorenko","l":"ParallelStream"},{"p":"ru.nsu.sidorenko","l":"Sequential"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.sidorenko","l":"IsPrime"},{"p":"ru.nsu.sidorenko","l":"Parallel"},{"p":"ru.nsu.sidorenko","l":"ParallelStream"},{"p":"ru.nsu.sidorenko","l":"Sequential"}];updateSearchResults();
