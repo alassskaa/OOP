@@ -18,25 +18,6 @@ public class  ParallelStream {
      * @return результат.
      */
     public static boolean check(List<Integer> list) {
-        return list.parallelStream().anyMatch(ParallelStream::isPrime);
-    }
-
-    /**
-     * Реализация проверки числа на простоту. Проверяем до корня из этого числа.
-     *
-     * @param el - число, проверяемое на простоту.
-     */
-    private static boolean isPrime(int el) {
-        if (el < 2) {
-            return true;
-        }
-
-        for (int i = 2; i * i <= el; i++) {
-            if (el % i == 0) {
-                return true;
-            }
-        }
-
-        return false;
+        return list.parallelStream().anyMatch(n -> !IsPrime.isPrime(n));
     }
 }
