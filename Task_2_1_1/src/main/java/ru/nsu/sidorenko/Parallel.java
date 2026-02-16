@@ -38,7 +38,8 @@ public class Parallel extends Thread {
      * @param list - обрабатываемый список.
      * @param threadCount - количество используемых потоков.
      * @return флаг-результат.
-     * @throws InterruptedException - исключение, которое возвращает используемая функция thread.start().
+     * @throws InterruptedException - исключение, которое возвращает используемая
+     * функция thread.start().
      */
     public static boolean check(List<Integer> list, int threadCount) throws InterruptedException {
         Result flag = new Result();
