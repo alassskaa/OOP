@@ -8,8 +8,6 @@ import java.util.List;
  * Проверка происходит последовательно в одном потоке.
  */
 public class Sequential {
-    private boolean flag = false;
-
     /**
      * Основная функция для проверки списка на наличие в нем составных чисел.
      * Каждый элемент проверяется последовательно.
@@ -17,8 +15,8 @@ public class Sequential {
      * @param list - обрабатываемый список.
      * @return результат.
      */
-    public boolean check(List<Integer> list) {
-
+    public static boolean check(List<Integer> list) {
+        boolean flag = false;
         for (Integer el : list) {
             if (!IsPrime.isPrime(el)) {
                 flag = true;

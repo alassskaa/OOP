@@ -53,18 +53,74 @@ public class ParallelTest {
     }
 
     @Test
-    public void timeTest() throws InterruptedException {
-        long start = System.currentTimeMillis();
-        List<Integer> list = new ArrayList<>();
+    public void timeTestSmallLenSmallNumbers() throws InterruptedException {
+        double sum = 0;
+        for (int i = 0; i < 20; i++) {
+            long start = System.nanoTime();
+            List<Integer> list = Arrays.asList(6, 8, 7, 13, 5, 9, 4);
 
-        for (int i = 0; i < 10000000; i++) {
-            list.add(i);
+            boolean result = Parallel.check(list, 100);
+            assertTrue(result);
+
+            long end = System.nanoTime();
+            double durationMs = (end - start) / 1_000_000.0;
+            System.out.printf("Test with small length and small numbers took: %.2f ms%n", durationMs);
+            sum += durationMs;
         }
+        System.out.printf("Average time for small length and small numbers: %.2f ms%n", sum/20.0);
+    }
 
-        boolean result = Parallel.check(list, 10000);
-        assertTrue(result);
+    @Test
+    public void timeTestSmallLenBigNumbers() throws InterruptedException {
+        double sum = 0;
+        List<Integer> list = PrimeGenerator.generateBigPrimes(15);
+        for (int i = 0; i < 20; i++) {
+            long start = System.nanoTime();
 
-        long end = System.currentTimeMillis();
-        System.out.println("Test for 4 threads took: " + (end - start) + " ms\n");
+            boolean result = Parallel.check(list, 100);
+            assertFalse(result);
+
+            long end = System.nanoTime();
+            double durationMs = (end - start) / 1_000_000.0;
+            System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
+            sum += durationMs;
+        }
+        System.out.println(sum/20);
+    }
+
+    @Test
+    public void timeTestBigLenSmallNumbers() throws InterruptedException {
+        double sum = 0;
+        List<Integer> list = PrimeGenerator.generateFirstPrimes(10000);
+        for (int i = 0; i < 20; i++) {
+            long start = System.nanoTime();
+
+            boolean result = Parallel.check(list, 10);
+            assertFalse(result);
+
+            long end = System.nanoTime();
+            double durationMs = (end - start) / 1_000_000.0;
+            System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
+            sum += durationMs;
+        }
+        System.out.println(sum/20.0);
+    }
+
+    @Test
+    public void timeTestSmallDataBigNumbers() throws InterruptedException {
+        double sum = 0;
+        List<Integer> list = PrimeGenerator.generateBigPrimes(3000);
+        for (int i = 0; i < 20; i++) {
+            long start = System.nanoTime();
+
+            boolean result = Parallel.check(list, 100);
+            assertFalse(result);
+
+            long end = System.nanoTime();
+            double durationMs = (end - start) / 1_000_000.0;
+            System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
+            sum += durationMs;
+        }
+        System.out.println(sum/20);
     }
 }
