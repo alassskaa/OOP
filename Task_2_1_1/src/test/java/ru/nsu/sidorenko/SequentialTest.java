@@ -1,9 +1,7 @@
 package ru.nsu.sidorenko;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -62,7 +60,7 @@ public class SequentialTest {
             System.out.printf("Test with small data and small numbers took: %.3f ms%n", durationMs);
             sum +=  durationMs;
         }
-        System.out.println(sum/20);
+        System.out.println(sum / 20);
     }
 
     @Test
@@ -80,7 +78,7 @@ public class SequentialTest {
             System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
             sum += durationMs;
         }
-        System.out.println(sum/20);
+        System.out.println(sum / 20);
     }
 
 
@@ -99,7 +97,7 @@ public class SequentialTest {
             System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
             sum += durationMs;
         }
-        System.out.println(sum/20.0);
+        System.out.println(sum / 20.0);
     }
 
     @Test
@@ -117,6 +115,6 @@ public class SequentialTest {
             System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
             sum += durationMs;
         }
-        System.out.println(sum/20);
+        System.out.println(sum / 20);
     }
 }

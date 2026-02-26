@@ -1,12 +1,11 @@
 package ru.nsu.sidorenko;
 
-import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Класс тестов для файла Parallel.
@@ -67,7 +66,7 @@ public class ParallelTest {
             System.out.printf("Test with small length and small numbers took: %.2f ms%n", durationMs);
             sum += durationMs;
         }
-        System.out.printf("Average time for small length and small numbers: %.2f ms%n", sum/20.0);
+        System.out.printf("Average time for small length and small numbers: %.2f ms%n", sum / 20.0);
     }
 
     @Test
@@ -85,7 +84,7 @@ public class ParallelTest {
             System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
             sum += durationMs;
         }
-        System.out.println(sum/20);
+        System.out.println(sum / 20);
     }
 
     @Test
@@ -103,7 +102,7 @@ public class ParallelTest {
             System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
             sum += durationMs;
         }
-        System.out.println(sum/20.0);
+        System.out.println(sum / 20.0);
     }
 
     @Test
@@ -121,6 +120,6 @@ public class ParallelTest {
             System.out.printf("Test with small data and big numbers took: %.2f ms%n", durationMs);
             sum += durationMs;
         }
-        System.out.println(sum/20);
+        System.out.println(sum / 20);
     }
 }
