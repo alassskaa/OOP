@@ -14,8 +14,8 @@ import java.util.List;
 public class Parallel extends Thread {
     private final int from;
     private final int to;
-    List<Integer> list;
-    Result foundComposite;
+    private final List<Integer> list;
+    private final Result foundComposite;
 
     /**
      * Конструктор для создания элемента класса.

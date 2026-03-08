@@ -12,7 +12,9 @@ public class  IsPrime {
      * @param el - число, проверяемое на простоту.
      */
     public static boolean isPrime(int el) {
-        if (el < 2) return false;
+        if (el < 2) {
+            return false;
+        }
 
         for (long i = 2; i * i <= el; i++) {
             if (el % i == 0) {
