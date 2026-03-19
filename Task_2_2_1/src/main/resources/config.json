@@ -1,4 +1,8 @@
 {
+  "pizzeriaConfig": {
+    "warehouseCapacity": 10,
+    "pizzeriaTimeMs": 60000
+  },
   "bakers": [
     {"id": 1, "speedMs": 3000},
     {"id": 2, "speedMs": 4000},
@@ -8,7 +12,5 @@
     {"id": 1, "capacity": 3},
     {"id": 2, "capacity": 2},
     {"id": 3, "capacity": 4}
-  ],
-  "warehouseCapacity": 10,
-  "pizzeriaTimeMs": 60000
+  ]
 }

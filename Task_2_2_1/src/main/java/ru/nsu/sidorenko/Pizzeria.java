@@ -1,7 +1,7 @@
 package ru.nsu.sidorenko;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * Курьеры забирают пиццы со склада и развозят заказы.
  */
 public class Pizzeria {
-    private OrdersQueue ordersQueue = new OrdersQueue();
+    private final OrdersQueue ordersQueue = new OrdersQueue();
     private Warehouse warehouse;
     private final List<Thread> bakerThreads = new ArrayList<>();
     private final List<Thread> courierThreads = new ArrayList<>();
@@ -28,7 +28,11 @@ public class Pizzeria {
      */
     public void start(String configFilePath) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        Config config = mapper.readValue(new File(configFilePath), Config.class);
+        InputStream is = getClass().getClassLoader().getResourceAsStream(configFilePath);
+        if (is == null) {
+            throw new RuntimeException("Config file not found: " + configFilePath);
+        }
+        Config config = mapper.readValue(is, Config.class);
 
         Config.PizzeriaConfig pizzeriaConfig = config.getPizzeriaConfig();
         warehouse = new Warehouse(pizzeriaConfig.getWarehouseCapacity());

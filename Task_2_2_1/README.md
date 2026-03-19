@@ -15,7 +15,7 @@
 ### Параметры пиццерии
 
 В качестве конфигурационного файла с параметрами пиццерии использован JSON: 
-[config.json](config.json)
+[config.json](src/main/resources/config.json)
 
 ### UML-диаграмма 
 
