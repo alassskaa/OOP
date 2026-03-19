@@ -1,11 +1,13 @@
 package ru.nsu.sidorenko;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Тест для проверки работы программы.
+ */
 public class PizzeriaTest {
 
     @Test
@@ -20,7 +22,11 @@ public class PizzeriaTest {
                 Orders order = new Orders(orderCounter.getAndIncrement());
                 ordersQueue.put(order);
                 System.out.println("[" + order.getId() + "] NEW_ORDER");
-                try { Thread.sleep(100); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
             ordersQueue.close();
             System.out.println("OrdersQueue CLOSED");

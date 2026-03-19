@@ -41,7 +41,9 @@ public class Courier implements Runnable {
                 boot.add(first);
                 for (int i = 1; i < capacity; i++) {
                     Orders next = warehouse.removePizza();
-                    if (next == null) break;
+                    if (next == null) {
+                        break;
+                    }
                     boot.add(next);
                 }
 
