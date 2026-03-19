@@ -44,15 +44,6 @@ public class OrdersQueue {
     }
 
     /**
-     * Метод для проверки, пуста ли очередь.
-     *
-     * @return true или false.
-     */
-    public synchronized boolean isEmpty() {
-        return queue.isEmpty();
-    }
-
-    /**
      * Метод для закрытия очереди заказов.
      */
     public synchronized void close() {

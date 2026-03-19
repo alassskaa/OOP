@@ -59,28 +59,10 @@ public class Warehouse {
     }
 
     /**
-     * Метод для проверки, пуста ли очередь заказов.
-     *
-     * @return true или false.
-     */
-    public synchronized boolean isEmpty() {
-        return pizzas.isEmpty();
-    }
-
-    /**
      * Метод для имитации закрытия склада.
      */
     public synchronized void close() {
         closed = true;
         notifyAll();
-    }
-
-    /**
-     * Метод для проверки, закрыт ли склад.
-     *
-     * @return true или false.
-     */
-    public synchronized boolean isClosed() {
-        return closed;
     }
 }
