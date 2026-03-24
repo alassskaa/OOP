@@ -12,7 +12,7 @@ import java.util.List;
  * Курьеры забирают пиццы со склада и развозят заказы.
  */
 public class Pizzeria {
-    private final OrdersQueue ordersQueue = new OrdersQueue();
+    private final OrdersQueue ordersQueue = new OrdersQueue(); //очередь заказов для поваров
     private Warehouse warehouse;
     private final List<Thread> bakerThreads = new ArrayList<>();
     private final List<Thread> courierThreads = new ArrayList<>();

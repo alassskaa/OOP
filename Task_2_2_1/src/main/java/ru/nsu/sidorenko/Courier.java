@@ -32,7 +32,7 @@ public class Courier implements Runnable {
             while (true) {
                 List<Orders> boot = new ArrayList<>();
 
-                Orders first = warehouse.removePizza();
+                Orders first = warehouse.getPizza();
 
                 if (first == null) {
                     break;
@@ -40,7 +40,7 @@ public class Courier implements Runnable {
 
                 boot.add(first);
                 for (int i = 1; i < capacity; i++) {
-                    Orders next = warehouse.removePizza();
+                    Orders next = warehouse.getPizza();
                     if (next == null) {
                         break;
                     }

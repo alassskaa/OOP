@@ -23,13 +23,13 @@ public class Warehouse {
     }
 
     /**
-     * Метод, реализующий имитацию добавления пиццы на склад.
+     * Метод, реализующий имитацию добавления пекарем пиццы на склад.
      *
      * @param order - заказ, для которого изготовлена пицца.
      * @throws InterruptedException - исключение при ошибке.
      */
-    public synchronized void addPizza(Orders order) throws InterruptedException {
-        while (pizzas.size() >= capacity) {
+    public synchronized void putPizza(Orders order) throws InterruptedException {
+        while (pizzas.size() == capacity) {
             wait();
         }
 
@@ -39,12 +39,12 @@ public class Warehouse {
     }
 
     /**
-     * Метод, реализующий имитацию удаления пиццы со склада.
+     * Метод, реализующий имитацию получения курьером пиццы со склада.
      *
      * @return заказ, который забрал курьер.
      * @throws InterruptedException - исключение при ошибке.
      */
-    public synchronized Orders removePizza() throws InterruptedException {
+    public synchronized Orders getPizza() throws InterruptedException {
         while (pizzas.isEmpty() && !closed) {
             wait();
         }

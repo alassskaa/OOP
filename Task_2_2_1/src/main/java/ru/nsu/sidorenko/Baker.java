@@ -38,7 +38,7 @@ public class Baker implements Runnable {
 
                 System.out.println("[" + order.getId() + "] COOKING by Baker-" + id);
                 Thread.sleep(speed);
-                warehouse.addPizza(order);
+                warehouse.putPizza(order);
                 System.out.println("[" + order.getId() + "] READY by Baker-" + id);
             }
         } catch (InterruptedException e) {
