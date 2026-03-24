@@ -109,19 +109,19 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addPizza(ru.nsu.sidorenko.Orders)" class="member-name-link">addPizza</a><wbr>(<a href="Orders.html" title="class in ru.nsu.sidorenko">Orders</a>&nbsp;order)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Метод, реализующий имитацию добавления пиццы на склад.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#close()" class="member-name-link">close</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Метод для имитации закрытия склада.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Orders.html" title="class in ru.nsu.sidorenko">Orders</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removePizza()" class="member-name-link">removePizza</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Orders.html" title="class in ru.nsu.sidorenko">Orders</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPizza()" class="member-name-link">getPizza</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Метод, реализующий имитацию получения курьером пиццы со склада.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#putPizza(ru.nsu.sidorenko.Orders)" class="member-name-link">putPizza</a><wbr>(<a href="Orders.html" title="class in ru.nsu.sidorenko">Orders</a>&nbsp;order)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Метод, реализующий имитацию удаления пиццы со склада.</div>
+<div class="block">Метод, реализующий имитацию добавления пекарем пиццы на склад.</div>
 </div>
 </div>
 </div>
@@ -160,11 +160,11 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addPizza(ru.nsu.sidorenko.Orders)">
-<h3>addPizza</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addPizza</span><wbr><span class="parameters">(<a href="Orders.html" title="class in ru.nsu.sidorenko">Orders</a>&nbsp;order)</span>
+<section class="detail" id="putPizza(ru.nsu.sidorenko.Orders)">
+<h3>putPizza</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">putPizza</span><wbr><span class="parameters">(<a href="Orders.html" title="class in ru.nsu.sidorenko">Orders</a>&nbsp;order)</span>
               throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
-<div class="block">Метод, реализующий имитацию добавления пиццы на склад.</div>
+<div class="block">Метод, реализующий имитацию добавления пекарем пиццы на склад.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>order</code> - - заказ, для которого изготовлена пицца.</dd>
@@ -174,11 +174,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="removePizza()">
-<h3>removePizza</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Orders.html" title="class in ru.nsu.sidorenko">Orders</a></span>&nbsp;<span class="element-name">removePizza</span>()
-                   throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
-<div class="block">Метод, реализующий имитацию удаления пиццы со склада.</div>
+<section class="detail" id="getPizza()">
+<h3>getPizza</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Orders.html" title="class in ru.nsu.sidorenko">Orders</a></span>&nbsp;<span class="element-name">getPizza</span>()
+                throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Метод, реализующий имитацию получения курьером пиццы со склада.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>заказ, который забрал курьер.</dd>
