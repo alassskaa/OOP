@@ -1,8 +1,8 @@
 package ru.nsu.sidorenko.view;
 
 import javafx.scene.canvas.Canvas;
-import javafx.scene.paint.Color;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 import ru.nsu.sidorenko.model.Food;
 import ru.nsu.sidorenko.model.Game;
 import ru.nsu.sidorenko.model.Obstacle;
