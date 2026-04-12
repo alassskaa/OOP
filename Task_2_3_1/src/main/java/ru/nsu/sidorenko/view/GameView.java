@@ -1,9 +1,12 @@
 package ru.nsu.sidorenko.view;
 
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import ru.nsu.sidorenko.model.*;
+import javafx.scene.canvas.GraphicsContext;
+import ru.nsu.sidorenko.model.Food;
+import ru.nsu.sidorenko.model.Game;
+import ru.nsu.sidorenko.model.Obstacle;
+import ru.nsu.sidorenko.model.Point;
 
 /**
  * Класс для отрисовки игрового поля.
@@ -40,24 +43,24 @@ public class GameView extends Canvas {
         gc.setFill(Color.RED);
         for (Food f : game.getFoods()) {
             Point p = f.getPosition();
-            gc.fillOval(p.x * cellSize, p.y * cellSize, cellSize, cellSize);
+            gc.fillOval(p.xCoord * cellSize, p.yCoord * cellSize, cellSize, cellSize);
         }
 
         gc.setFill(Color.AQUA);
         for (Obstacle o : game.getObstacles()) {
             for (Point p : o.getPositions()) {
-                gc.fillRect(p.x * cellSize, p.y * cellSize, cellSize, cellSize);
+                gc.fillRect(p.xCoord * cellSize, p.yCoord * cellSize, cellSize, cellSize);
             }
         }
 
         gc.setFill(Color.CORAL);
         for (Point p : game.getSnake().getSnake()) {
-            gc.fillRect(p.x * cellSize, p.y * cellSize, cellSize, cellSize);
+            gc.fillRect(p.xCoord * cellSize, p.yCoord * cellSize, cellSize, cellSize);
         }
 
         gc.setFill(Color.ORANGE);
         Point head = game.getSnake().getHead();
-        gc.fillRect(head.x * cellSize, head.y * cellSize, cellSize, cellSize);
+        gc.fillRect(head.xCoord * cellSize, head.yCoord * cellSize, cellSize, cellSize);
 
         if (game.isGameOver()) {
             drawText(gc, "GAME OVER");

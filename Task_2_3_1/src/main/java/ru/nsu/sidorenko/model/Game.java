@@ -73,7 +73,7 @@ public class Game {
         snake.move();
         Point head = snake.getHead();
 
-        if (head.x < 0 || head.x >= width || head.y < 0 || head.y >= height) {
+        if (head.xCoord < 0 || head.xCoord >= width || head.yCoord < 0 || head.yCoord >= height) {
             gameOver = true;
             return;
         }
@@ -122,7 +122,7 @@ public class Game {
             while (isOccupied(p)) {
                 p = randomPoint();
             }
-            foods.add(new Food(p.x, p.y));
+            foods.add(new Food(p.xCoord, p.yCoord));
         }
     }
 
@@ -138,7 +138,7 @@ public class Game {
         while (isOccupied(p)) {
             p = randomPoint();
         }
-        food.setPosition(p.x, p.y);
+        food.setPosition(p.xCoord, p.yCoord);
     }
 
     /**
@@ -165,7 +165,8 @@ public class Game {
                 int y = random.nextInt(height);
 
                 for (int j = 0; j < len; j++) {
-                    int nx, ny;
+                    int nx;
+                    int ny;
                     if (horizontal) {
                         nx = x + j;
                         ny = y;
@@ -231,7 +232,9 @@ public class Game {
 
         for (Obstacle o : obstacles) {
             for (Point op : o.getPositions()) {
-                if (op.equals(p)) return true;
+                if (op.equals(p)) {
+                    return true;
+                }
             }
         }
 

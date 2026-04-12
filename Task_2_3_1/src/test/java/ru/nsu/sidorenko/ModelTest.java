@@ -1,10 +1,20 @@
 package ru.nsu.sidorenko;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import ru.nsu.sidorenko.model.*;
 import java.util.ArrayList;
+import ru.nsu.sidorenko.model.Direction;
+import ru.nsu.sidorenko.model.Food;
+import ru.nsu.sidorenko.model.Game;
 import java.util.List;
+import ru.nsu.sidorenko.model.Obstacle;
+import ru.nsu.sidorenko.model.Point;
+import ru.nsu.sidorenko.model.Snake;
+import org.junit.jupiter.api.Test;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Класс тестов для написанной программы.
@@ -18,8 +28,8 @@ public class ModelTest {
     void testSnakeMove() {
         Snake snake = new Snake(5, 5);
         snake.move();
-        assertEquals(6, snake.getHead().x);
-        assertEquals(5, snake.getHead().y);
+        assertEquals(6, snake.getHead().xCoord);
+        assertEquals(5, snake.getHead().yCoord);
     }
 
     @Test
@@ -47,14 +57,18 @@ public class ModelTest {
     @Test
     void testGameOverWall() {
         Game game = new Game(5, 5, 0, 0, 100);
-        for (int i = 0; i < 10; i++) game.step();
+        for (int i = 0; i < 10; i++) {
+            game.step();
+        }
         assertTrue(game.isGameOver());
     }
 
     @Test
     void testStartNewGameReset() {
         Game game = new Game(30, 20, 3, 5, 15);
-        for (int i = 0; i < 100; i++) game.step();
+        for (int i = 0; i < 100; i++) {
+            game.step();
+        }
         game.startNewGame();
         assertFalse(game.isGameOver());
         assertFalse(game.isGameWon());

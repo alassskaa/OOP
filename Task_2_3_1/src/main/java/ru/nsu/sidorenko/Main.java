@@ -19,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
 
-        Game game = new Game(30, 20, 7, 5, 5);
+        Game game = new Game(30, 20, 7, 5, 15);
         GameView view = new GameView(game);
         GameController controller = new GameController(game);
 

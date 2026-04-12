@@ -33,10 +33,10 @@ public class Snake {
      * @param newDirection - новое направление движения.
      */
     public void setDirection(Direction newDirection) {
-        if ((direction == Direction.UP && newDirection == Direction.DOWN) ||
-                (direction == Direction.DOWN && newDirection == Direction.UP) ||
-                (direction == Direction.LEFT && newDirection == Direction.RIGHT) ||
-                (direction == Direction.RIGHT && newDirection == Direction.LEFT)) {
+        if ((direction == Direction.UP && newDirection == Direction.DOWN)
+                || (direction == Direction.DOWN && newDirection == Direction.UP)
+                || (direction == Direction.LEFT && newDirection == Direction.RIGHT)
+                || (direction == Direction.RIGHT && newDirection == Direction.LEFT)) {
             return;
         }
         this.direction = newDirection;
@@ -111,14 +111,22 @@ public class Snake {
      * @return координаты клетки следующего шага.
      */
     private Point nextPoint(Point head) {
-        int x = head.x;
-        int y = head.y;
+        int x = head.xCoord;
+        int y = head.yCoord;
 
         switch (direction) {
-            case UP:    y--; break;
-            case DOWN:  y++; break;
-            case LEFT:  x--; break;
-            case RIGHT: x++; break;
+            case UP:
+                y--;
+                break;
+            case DOWN:
+                y++;
+                break;
+            case LEFT:
+                x--;
+                break;
+            case RIGHT:
+                x++;
+                break;
         }
 
         return new Point(x, y);

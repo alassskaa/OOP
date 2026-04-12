@@ -35,7 +35,7 @@ public class Food {
      * @param y - координата элемента по оси Y.
      */
     public void setPosition(int x, int y) {
-        this.position.x = x;
-        this.position.y = y;
+        this.position.xCoord = x;
+        this.position.yCoord = y;
     }
 }

@@ -6,8 +6,8 @@ import java.util.Objects;
  * Класс для задания координат внутри поля.
  */
 public class Point {
-    public int x;
-    public int y;
+    public int xCoord;
+    public int yCoord;
 
     /**
      * Конструктор класса.
@@ -16,20 +16,24 @@ public class Point {
      * @param y - координата по оси Y.
      */
     public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.xCoord = x;
+        this.yCoord = y;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Point)) {
+            return false;
+        }
         Point p = (Point) o;
-        return x == p.x && y == p.y;
+        return xCoord == p.xCoord && yCoord == p.yCoord;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(xCoord, yCoord);
     }
 }
