@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.sidorenko"},{"l":"ru.nsu.sidorenko.controller"},{"l":"ru.nsu.sidorenko.model"},{"l":"ru.nsu.sidorenko.view"}];updateSearchResults();
