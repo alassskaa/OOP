@@ -73,38 +73,150 @@ public class Game {
         snake.move();
         Point head = snake.getHead();
 
-        if (head.xCoord < 0 || head.xCoord >= width || head.yCoord < 0 || head.yCoord >= height) {
+        if (outOfRange(head)) {
             gameOver = true;
             return;
         }
 
-        for (Point p : snake.getSnake()) {
-            if (p != head && p.equals(head)) {
-                gameOver = true;
-                return;
-            }
+        if (headMeetsTail(snake)) {
+            gameOver = true;
+            return;
         }
 
-        for (Obstacle o : obstacles) {
-            for (Point op : o.getPositions()) {
-                if (head.equals(op)) {
-                    gameOver = true;
-                    return;
-                }
-            }
+        if (headMeetsObstacle()) {
+            gameOver = true;
+            return;
         }
 
-        for (Food f : foods) {
-            if (head.equals(f.getPosition())) {
-                snake.grow();
-                moveFood(f);
-                break;
-            }
+        Food eaten = eaten();
+        if (eaten != null) {
+            snake.grow();
+            moveFood(eaten);
         }
 
         if (snake.length() >= winLen) {
             gameWon = true;
         }
+    }
+
+    /**
+     * Геттер для змейки.
+     *
+     * @return snake.
+     */
+    public Snake getSnake() {
+        return snake;
+    }
+
+    /**
+     * Геттер для элемента еды.
+     *
+     * @return food.
+     */
+    public List<Food> getFoods() {
+        return foods;
+    }
+
+    /**
+     * Геттер для препятствия.
+     *
+     * @return obstacle.
+     */
+    public List<Obstacle> getObstacles() {
+        return obstacles;
+    }
+
+    /**
+     * Проверка на проигрыш.
+     *
+     * @return false или true;
+     */
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    /**
+     * Проверка на победу.
+     *
+     * @return false или true.
+     */
+    public boolean isGameWon() {
+        return gameWon;
+    }
+
+    /**
+     * Геттер ширины поля.
+     *
+     * @return width.
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * Геттер высоты поля.
+     *
+     * @return height.
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Проверка столкновения головы змейки с её хвостом.
+     *
+     * @param snake - змейка.
+     * @return false или true.
+     */
+    private boolean headMeetsTail(Snake snake) {
+        Point head = snake.getHead();
+
+        for (Point p : snake.getSnake()) {
+            if (p != head && p.equals(head)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Проверка столкновения змейки с препятствием.
+     *
+     * @return false или true.
+     */
+    private boolean headMeetsObstacle() {
+        Point head = snake.getHead();
+
+        for (Obstacle o : obstacles) {
+            for (Point op : o.getPositions()) {
+                if (head.equals(op)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Проверка, съеден ли какой-нибудь элемент еды,
+     * а также определение, какой из элементов еды
+     * был съеден.
+     *
+     * @return съеденный элемент еды (если есть).
+     */
+    private Food eaten() {
+        Point head = snake.getHead();
+
+        for (Food f : foods) {
+            if (head.equals(f.getPosition())) {
+                return f;
+            }
+        }
+        return null;
+    }
+
+    private boolean outOfRange(Point head) {
+        return head.xCoord < 0 || head.xCoord >= width || head.yCoord < 0 || head.yCoord >= height;
     }
 
     /**
@@ -250,66 +362,4 @@ public class Game {
         return new Point(random.nextInt(width), random.nextInt(height));
     }
 
-    /**
-     * Геттер для змейки.
-     *
-     * @return snake.
-     */
-    public Snake getSnake() {
-        return snake;
-    }
-
-    /**
-     * Геттер для элемента еды.
-     *
-     * @return food.
-     */
-    public List<Food> getFoods() {
-        return foods;
-    }
-
-    /**
-     * Геттер для препятствия.
-     *
-     * @return obstacle.
-     */
-    public List<Obstacle> getObstacles() {
-        return obstacles;
-    }
-
-    /**
-     * Проверка на проигрыш.
-     *
-     * @return false или true;
-     */
-    public boolean isGameOver() {
-        return gameOver;
-    }
-
-    /**
-     * Проверка на победу.
-     *
-     * @return false или true.
-     */
-    public boolean isGameWon() {
-        return gameWon;
-    }
-
-    /**
-     * Геттер ширины поля.
-     *
-     * @return width.
-     */
-    public int getWidth() {
-        return width;
-    }
-
-    /**
-     * Геттер высоты поля.
-     *
-     * @return height.
-     */
-    public int getHeight() {
-        return height;
-    }
 }

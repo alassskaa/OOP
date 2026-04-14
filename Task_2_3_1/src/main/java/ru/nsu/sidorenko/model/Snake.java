@@ -12,10 +12,12 @@ public class Snake {
     private Direction direction;
 
     /**
-     * Конструктор класса.
+     * Создание новой змейки состоящей из одногй точки с координатами {@code startX, startY}.
      *
      * @param startX - позиция головы в начале игры по X.
      * @param startY - позиция головы в начале игры по Y.
+     *
+     * @see Snake
      */
     public Snake(int startX, int startY) {
         snake = new LinkedList<>();

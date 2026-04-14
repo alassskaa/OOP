@@ -3,9 +3,7 @@ package ru.nsu.sidorenko.view;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import ru.nsu.sidorenko.model.Food;
-import ru.nsu.sidorenko.model.Game;
-import ru.nsu.sidorenko.model.Obstacle;
+import ru.nsu.sidorenko.controller.GameController;
 import ru.nsu.sidorenko.model.Point;
 
 /**
@@ -13,19 +11,19 @@ import ru.nsu.sidorenko.model.Point;
  * Расширяет класс Canvas.
  */
 public class GameView extends Canvas {
-    private final Game game;
+    private final GameController controller;
     private final int cellSize = 20;
 
     /**
      * Конструктор класса.
      *
-     * @param game - объект класса Game.
+     * @param controller - объект класса Game.
      */
-    public GameView(Game game) {
-        this.game = game;
+    public GameView(GameController controller) {
+        this.controller = controller;
 
-        setWidth(game.getWidth() * cellSize);
-        setHeight(game.getHeight() * cellSize);
+        setWidth(controller.getWidth() * cellSize);
+        setHeight(controller.getHeight() * cellSize);
     }
 
     /**
@@ -41,32 +39,49 @@ public class GameView extends Canvas {
         gc.fillRect(0, 0, getWidth(), getHeight());
 
         gc.setFill(Color.RED);
-        for (Food f : game.getFoods()) {
-            Point p = f.getPosition();
-            gc.fillOval(p.xCoord * cellSize, p.yCoord * cellSize, cellSize, cellSize);
+        for (Point p : controller.getFoodCoordinates()) {
+            gc.fillOval(
+                    p.xCoord * cellSize,
+                    p.yCoord * cellSize,
+                    cellSize,
+                    cellSize
+            );
         }
 
         gc.setFill(Color.AQUA);
-        for (Obstacle o : game.getObstacles()) {
-            for (Point p : o.getPositions()) {
-                gc.fillRect(p.xCoord * cellSize, p.yCoord * cellSize, cellSize, cellSize);
-            }
+        for (Point p : controller.getObstacleCoordinates()) {
+            gc.fillRect(
+                    p.xCoord * cellSize,
+                    p.yCoord * cellSize,
+                    cellSize,
+                    cellSize
+            );
         }
 
         gc.setFill(Color.CORAL);
-        for (Point p : game.getSnake().getSnake()) {
-            gc.fillRect(p.xCoord * cellSize, p.yCoord * cellSize, cellSize, cellSize);
+        for (Point p : controller.getSnakeCoordinates()) {
+            gc.fillRect(
+                    p.xCoord * cellSize,
+                    p.yCoord * cellSize,
+                    cellSize,
+                    cellSize
+            );
         }
 
         gc.setFill(Color.ORANGE);
-        Point head = game.getSnake().getHead();
-        gc.fillRect(head.xCoord * cellSize, head.yCoord * cellSize, cellSize, cellSize);
+        Point head = controller.getHead();
+        gc.fillRect(
+                head.xCoord * cellSize,
+                head.yCoord * cellSize,
+                cellSize,
+                cellSize
+        );
 
-        if (game.isGameOver()) {
+        if (controller.isGameOver()) {
             drawText(gc, "GAME OVER");
         }
 
-        if (game.isGameWon()) {
+        if (controller.isGameWon()) {
             drawText(gc, "YOU WIN");
         }
     }
