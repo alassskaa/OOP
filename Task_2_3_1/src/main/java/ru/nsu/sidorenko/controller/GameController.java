@@ -1,18 +1,21 @@
 package ru.nsu.sidorenko.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import ru.nsu.sidorenko.model.*;
+import ru.nsu.sidorenko.model.Direction;
+import ru.nsu.sidorenko.model.Food;
+import ru.nsu.sidorenko.model.Game;
+import ru.nsu.sidorenko.model.Obstacle;
+import ru.nsu.sidorenko.model.Point;
 import ru.nsu.sidorenko.view.GameView;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
 
 /**
  * Контроллер игры. В данном классе реализована
@@ -21,8 +24,7 @@ import java.util.Queue;
 public class GameController {
     private final Game game;
     private Timeline timeline;
-    private final Queue<Object> directionQueue = new LinkedList<>();;
-
+    private final Queue<Object> directionQueue = new LinkedList<>();
 
     /**
      * Конструктор класса. Сохраняет игру.
@@ -58,11 +60,22 @@ public class GameController {
         scene.setOnKeyPressed(event -> {
             Direction dir = null;
             switch (event.getCode()) {
-                case UP: case W:    dir = Direction.UP;    break;
-                case DOWN: case S:  dir = Direction.DOWN;  break;
-                case LEFT: case A:  dir = Direction.LEFT;  break;
-                case RIGHT: case D: dir = Direction.RIGHT; break;
-                case R: game.startNewGame(); view.draw();  break;
+                case UP: case W:
+                    dir = Direction.UP;
+                    break;
+                case DOWN: case S:
+                    dir = Direction.DOWN;
+                    break;
+                case LEFT: case A:
+                    dir = Direction.LEFT;
+                    break;
+                case RIGHT: case D:
+                    dir = Direction.RIGHT;
+                    break;
+                case R:
+                    game.startNewGame();
+                    view.draw();
+                    break;
             }
             if (dir != null && directionQueue.size() < 2) {
                 directionQueue.add(dir);
