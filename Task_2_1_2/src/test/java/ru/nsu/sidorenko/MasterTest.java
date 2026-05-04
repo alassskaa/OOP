@@ -1,16 +1,16 @@
 package ru.nsu.sidorenko;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Класс тестов для проверки работы
@@ -34,7 +34,8 @@ public class MasterTest {
 
     @Test
     void bigNumbers() throws Exception {
-        assertFalse(new Master().distribute(List.of(20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
+        assertFalse(new Master().distribute(List.of(20319251, 6997901,
+                6997927, 6997937, 17858849, 6997967,
                 6998009, 6998029, 6998039, 20165149, 6998051, 6998053)));
     }
 
@@ -66,7 +67,9 @@ public class MasterTest {
     @Test
     void manyMixed() throws Exception {
         List<Integer> nums = new ArrayList<>();
-        for (int i = 100; i < 200; i++) nums.add(i);
+        for (int i = 100; i < 200; i++) {
+            nums.add(i);
+        }
         assertTrue(new Master().distribute(nums));
     }
 
