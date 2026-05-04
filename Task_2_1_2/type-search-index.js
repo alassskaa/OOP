@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.sidorenko","l":"IsPrime"},{"p":"ru.nsu.sidorenko","l":"Master"},{"p":"ru.nsu.sidorenko","l":"Result"},{"p":"ru.nsu.sidorenko","l":"Task"},{"p":"ru.nsu.sidorenko","l":"Worker"},{"p":"ru.nsu.sidorenko","l":"WorkerInfo"}];updateSearchResults();
