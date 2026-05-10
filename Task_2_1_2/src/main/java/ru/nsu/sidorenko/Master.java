@@ -97,27 +97,27 @@ public class Master {
             try (Socket socket = new Socket()) {
                 socket.connect(new InetSocketAddress(worker.getHost(), worker.getPort()), 2000);
 
-                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+                try (ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                     ObjectInputStream  in  = new ObjectInputStream(socket.getInputStream())) {
 
-                out.writeObject(task);
-                out.flush();
+                    out.writeObject(task);
+                    out.flush();
 
-                socket.setSoTimeout(2000);
-                if (!in.readBoolean()) {
-                    continue;
+                    socket.setSoTimeout(2000);
+                    if (!in.readBoolean()) {
+                        continue;
+                    }
+
+                    socket.setSoTimeout(30000);
+                    Result result = (Result) in.readObject();
+
+                    if (!result.getTaskId().equals(taskId)) {
+                        System.out.println("Worker " + worker.getPort() + " returned wrong taskId");
+                        continue;
+                    }
+
+                    return result.getResult();
                 }
-
-                socket.setSoTimeout(30000);
-                Result result = (Result) in.readObject();
-
-                if (!result.getTaskId().equals(taskId)) {
-                    System.out.println("Worker " + worker.getPort() + " returned wrong taskId");
-                    continue;
-                }
-
-                return result.getResult();
-
             } catch (Exception e) {
                 System.out.println("Worker " + worker.getPort() + " failed: " + e.getMessage());
             }
